@@ -143,3 +143,57 @@ function addDynamicStyles() {
     `;
     document.head.appendChild(style);
 }
+
+function toExchangeImage(img) {
+  const mainImage = document.getElementById('img_main');
+  if (!mainImage) return;
+  mainImage.src = img.src;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const productTab = document.getElementById('product-tab');
+    const imagesTab = document.getElementById('images-tab');
+    const productSection = document.getElementById('information-section');
+    const imagesSection = document.getElementById('images-section');
+
+    if (!productTab || !imagesTab || !productSection || !imagesSection) return;
+
+    productTab.addEventListener('click', () => {
+        productSection.classList.remove('hidden');
+        imagesSection.classList.add('hidden');
+
+        productTab.classList.add('bg-blue-600', 'text-white');
+        productTab.classList.remove('bg-gray-100', 'text-gray-700');
+
+        imagesTab.classList.add('bg-gray-100', 'text-gray-700');
+        imagesTab.classList.remove('bg-blue-600', 'text-white');
+    });
+
+    imagesTab.addEventListener('click', () => {
+        productSection.classList.add('hidden');
+        imagesSection.classList.remove('hidden');
+
+        imagesTab.classList.add('bg-blue-600', 'text-white');
+        imagesTab.classList.remove('bg-gray-100', 'text-gray-700');
+
+        productTab.classList.add('bg-gray-100', 'text-gray-700');
+        productTab.classList.remove('bg-blue-600', 'text-white');
+    });
+});
+
+function viewImage(src) {
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-image');
+
+    if (!modal || !modalImg) return;
+
+    modalImg.src = src;
+    modal.classList.remove('hidden');
+}
+
+function closeModal() {
+    const modal = document.getElementById('image-modal');
+    if (!modal) return;
+
+    modal.classList.add('hidden');
+}
